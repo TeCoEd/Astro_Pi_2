@@ -13,12 +13,13 @@ running = True
 
 A = (0, 255, 0)
 X = (0, 0, 0)
-P = (125, 80, 200)
+P = (0, 0, 255)
 M = (60, 200, 130)
 
+###change interface###
 music_interface = [
 A, P, A, P, A, P, A, P,
-A, X, A, X, A, X, A, X,
+A, P, A, P, A, P, A, P,
 A, X, A, X, A, X, A, X,
 A, X, A, X, A, X, A, X,
 X, X, X, X, X, X, X, X,
@@ -33,23 +34,34 @@ y = 0
 
 #sense.set_pixels(x, y, 255, 255, 255)
 
-
-def MP3_Player():
-    
-    print ("YOU SELECTED", letter)
-    print type(letter)
-    file_test = '/home/pi/Astro_MP3/MP3_files/'+letter+'.*'
-    print (file_test)
-    mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/'+letter+'.*')
-    print (mp3_files)
-    '''play MP3s'''
-
 '''dictonary of letters'''
 
 Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 07 :"H",
                  10: "I", 11: "J", 12: "K", 13: "L", 14: "M", 15: "N", 16: "O", 17: "P",
                  20: "Q", 21: "R", 22: "S", 23: "T", 24: "U", 25: "V", 26: "W", 27: "X",
-                 30: "Y", 31:"Z"}
+                 30: "Y", 31:"Z", 77: "Space"}
+
+def MP3_Player():
+    
+    print ("YOU SELECTED", letter)
+    print type(letter)
+    #file_test = ('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
+    #print (file_test)
+    mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
+    #print (mp3_files)
+    for song in mp3_files:
+        print song
+        pygame.mixer.music.load(song)
+        print("Playing Song")
+        pygame.mixer.music.play()
+        
+
+    ###load mp3 play move forward
+
+
+
+
+
 
 while running:
     Co_Ord = {"0, 0": "A" }

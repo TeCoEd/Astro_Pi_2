@@ -38,9 +38,9 @@ def MP3_Player():
     
     print ("YOU SELECTED", letter)
     print type(letter)
-    file_test = '/home/pi/Astro_MP3/MP3_files/'+letter+'.*'
+    file_test = ('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
     print (file_test)
-    mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/'+letter+'.*')
+    mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
     print (mp3_files)
     '''play MP3s'''
 
