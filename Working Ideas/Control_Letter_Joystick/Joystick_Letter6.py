@@ -39,25 +39,43 @@ y = 0
 Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 07 :"H",
                  10: "I", 11: "J", 12: "K", 13: "L", 14: "M", 15: "N", 16: "O", 17: "P",
                  20: "Q", 21: "R", 22: "S", 23: "T", 24: "U", 25: "V", 26: "W", 27: "X",
-                 30: "Y", 31:"Z", 77: "Space"}
+                 30: "Y", 31:"Z", 77: "PL8"}
 
 def MP3_Player():
-    
-    print ("YOU SELECTED", letter)
-    print type(letter)
-    #file_test = ('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
-    #print (file_test)
-    mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
-    #print (mp3_files)
-    for song in mp3_files:
-        print song
-        pygame.mixer.music.load(song)
+    try:
+        song = 0
+        
+        print ("YOU SELECTED", letter)
+        print type(letter)
+        #file_test = ('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
+        #print (file_test)
+        mp3_files = glob.glob('/home/pi/Astro_MP3/MP3_files/' + letter + '*.mp3')
+        #print (mp3_files)
+        songs_found  = mp3_files
+        print ("I have found the following song", songs_found)
+
+        song_number_total = len(songs_found)
+        print ("songs found", song_number_total)
+        print songs_found
+          
+        pygame.mixer.music.load(songs_found[song])
         print("Playing Song")
         pygame.mixer.music.play()
-        
 
-    ###load mp3 play move forward
+       
+   
+        #for song in mp3_files:
+          #  print song
+          #  pygame.mixer.music.load(song)
+          #  print("Playing Song")
+          #  pygame.mixer.music.play()
+            
+            
 
+        ###load mp3 play move forward
+    except:
+        print ("No MP3s")
+        '''scroll NO MP3S'''
 
 
 

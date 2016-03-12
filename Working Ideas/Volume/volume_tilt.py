@@ -14,14 +14,18 @@ pygame.mixer.music.load('/home/pi/Astro_MP3/MP3_files/Afr.mp3')
 pygame.mixer.music.play()
 pygame.mixer.music.set_volume(0)
 
+
 while True:
     roll = sense.get_orientation()['roll']
-    #time.sleep(1)
-    #print roll
+    if roll < 80:
+        
+        #time.sleep(1)
+        #print roll
 
-    if roll > 0 and roll < 100:
-        print (roll)
-        pygame.mixer.music.set_volume(roll)
+        if roll > 0 and roll < 100:
+            print (roll)
+            pygame.mixer.music.set_volume(roll)
+            
     
 '''volume = 0
 
