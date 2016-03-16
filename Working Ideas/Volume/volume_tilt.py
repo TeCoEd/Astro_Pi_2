@@ -10,7 +10,7 @@ sense = SenseHat()
 sense.clear()
 
 
-pygame.mixer.music.load('/home/pi/Astro_MP3/MP3_files/Afr.mp3')
+pygame.mixer.music.load('/home/pi/Astro_MP3/MP3_files/Atest1.mp3')
 pygame.mixer.music.play()
 pygame.mixer.music.set_volume(0)
 

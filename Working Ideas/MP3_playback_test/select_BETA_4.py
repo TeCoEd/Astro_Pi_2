@@ -47,12 +47,16 @@ Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 
                  20: "Q", 21: "R", 22: "S", 23: "T", 24: "U", 25: "V", 26: "W", 27: "X",
                  30: "Y", 31:"Z", 32: "*", 33: "*", 34: "*", 35: "*", 36: "*", 37: "*",
                  40: "*", 41:"*", 42: "*", 43: "*", 44: "*", 45: "*", 46: "*", 47: "*",       
-                 50: "*", 51:"*", 52: "*", 53: "*", 54: "*", 55: "*", 56: "*", 57: "*",
+                 50: "*", 51:"*", 52: "*", 53: "*", 54: "*", 55: "*", 56: "*", 57: "^",
                  60: "*", 61:"*", 62: "*", 63: "*", 64: "*", 65: "*", 66: "*", 67: "*", 
-                 70: "1", 71:"2", 72: "*", 73: "*", 74: "*", 75: "*", 76: "*", 77: "PL8"}
+                 70: "1", 71:"2", 72: "3", 73: "4", 74: "5", 75: "6", 76: "7", 77: "8"}
+
+##play a random song
+
 
 '''Controls the PLaylist Music'''
 def MP3_Playlist():
+        the_song = 1
         ###add the play list
         print ("THIS IS THE PLAYLIST FUNCTION RUNNING")
         print ("YOU SELECTED", letter)
@@ -66,18 +70,32 @@ def MP3_Playlist():
         print ("I have found the following song", songs_found)
         number_of_songs = len(songs_found)
         print ("there are", number_of_songs)
-        
-        random_song = random.randrange(0, len(songs_found))
-        print ("RANDOM SONG", random_song)
-        try:
-                pygame.mixer.music.load(songs_found[random_song])
-                print("Playing Song")
-                pygame.mixer.music.play()
 
-        except:
-                print ("No MP3s")
-                '''scroll NO MP3S'''
-                sense.show_message("NO MP3s", text_colour = [255, 0, 0])
+        print type(number_of_songs)
+        #random_song = random.randrange(0, len(songs_found))
+        #print ("RANDOM SONG", random_song)
+
+##############################################
+     ###   play all songs in the list
+############################################
+        
+        #songs_found = songs_found[1:] + [songs_found[0]] # move current song to the back of the list 
+        #pygame.mixer.music.load(songs_found[0])
+        #pygame.mixer.music.play()
+
+        ###PLAY ALL SONGS IN THE PLAYLIST###]
+               
+        for i in songs_found:
+                pygame.mixer.music.load(the_song)
+                pygame.mixer.music.play()
+                print("Playing Song")
+                the_song = the_song + 1
+       
+
+      ## ''' except:'''
+          ##  '''    print ("No MP3s")'''
+        ##        '''scroll NO MP3S'''
+    ##    '''        sense.show_message("NO MP3s", text_colour = [255, 0, 0])'''
                 
         
         
@@ -163,6 +181,9 @@ while running:
                 if letter == "1":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 1")
                         MP3_Playlist()
+                elif letter == "2":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 2")
+                        MP3_Playlist()        
                         
                         ###run the playlist
                         ###add picture
