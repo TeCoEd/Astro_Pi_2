@@ -28,15 +28,20 @@ A, A, A, A, A, A, A, A,
 A, A, X, X, X, X, X, X,
 X, X, X, X, X, X, X, X,
 
-M, M, M, M, X, X, X, End, #MOOD AND VOLUME
+M, M, M, M, X, X, X, P, #MOOD AND VOLUME
 X, X, X, X, X, X, X, X,
 
-P, P, P, P, P, P, P, P] #PLAYLISTS
+P, P, P, P, P, P, P, End] #PLAYLISTS
 
 sense.set_pixels(music_interface)
 
 x = 0
 y = 0
+volume = 0.5
+volume_change = 0.10
+pygame.mixer.music.set_volume(volume)
+v_on = [0,255,0] ###CHANGE TO ORANGE
+v_off =[30,30,30]
 
 #sense.set_pixels(x, y, 255, 255, 255)
 
@@ -58,6 +63,8 @@ Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 
 ##########################
 def Volume_Control():
         print ("I control the Volume")
+       
+                
 
 ##############################################
      ###   play all songs in the list
@@ -189,13 +196,75 @@ while running:
                 #print ("YOU SELECTED", letter)
                 if letter == "1":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 1")
+                        sense.show_message("PlayList 1: Space", text_colour = [255, 255, 255])
                         MP3_Playlist()
                 elif letter == "2":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 2")
                         MP3_Playlist()
-                ###ADD OTHER PLAYLISTS ####
+                elif letter == "3":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 3")
+                        MP3_Playlist()
+                elif letter == "4":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 4")
+                        MP3_Playlist()
+                elif letter == "5":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 5")
+                        MP3_Playlist()
+                elif letter == "6":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 6")
+                        MP3_Playlist()        
+               ###Volume Control ###
                 elif letter == "#":   ###'''add 3,4,5,6,7,8,9'''
                         print ("VOLUME CONTROL")
+                        volume_running = True
+                        while volume_running == True:
+            
+                            #print volume_change
+                            for event in pygame.event.get():
+                                if event.type == KEYDOWN:
+                                    if event.key == K_b:
+                                         #print volume
+                                         volume = volume + volume_change
+                                        
+                                         print volume
+                                         pygame.mixer.music.set_volume(volume)
+                                         
+                                         sense.show_letter(str("+"))
+                                         time.sleep(0.2)
+
+                                if event.type == KEYDOWN:
+                                    if event.key == K_a:
+                                         #print volume
+                                         volume = volume - volume_change
+                                        
+                                         print volume
+                                         pygame.mixer.music.set_volume(volume)
+                                         
+                                         sense.show_letter(str("-"))
+                                         time.sleep(0.2)
+                                         
+                                if event.type == KEYDOWN:
+                                    if event.key == K_RETURN:
+                                            volume_running = False
+                                            
+
+                            if volume > 1:
+                                volume = 1
+                            elif volume <= 0:
+                                volume = 0
+                                print "mute"             
+
+                            conversion = 64/1
+                            pixels_on = int(volume * conversion)
+                            pixels_off = int(64 - pixels_on)
+
+                            volume_display = []             
+                            
+                            volume_display.extend([v_off] * pixels_off)
+                            volume_display.extend([v_on] * pixels_on)
+                            sense.set_pixels(volume_display)
+                            print ("TEST")
+                        #buffer
                         
                         
                         ###run the playlist

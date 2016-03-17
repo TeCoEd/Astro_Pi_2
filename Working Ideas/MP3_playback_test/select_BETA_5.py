@@ -31,7 +31,7 @@ X, X, X, X, X, X, X, X,
 M, M, M, M, X, X, X, End, #MOOD AND VOLUME
 X, X, X, X, X, X, X, X,
 
-P, P, P, P, P, P, P, P] #PLAYLISTS
+P, P, P, P, P, P, P, End] #PLAYLISTS
 
 sense.set_pixels(music_interface)
 
@@ -189,11 +189,24 @@ while running:
                 #print ("YOU SELECTED", letter)
                 if letter == "1":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 1")
+                        sense.show_message("PlayList 1: Space", text_colour = [255, 255, 255])
                         MP3_Playlist()
                 elif letter == "2":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 2")
                         MP3_Playlist()
-                ###ADD OTHER PLAYLISTS ####
+                elif letter == "3":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 3")
+                        MP3_Playlist()
+                elif letter == "4":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 4")
+                        MP3_Playlist()
+                elif letter == "5":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 5")
+                        MP3_Playlist()
+                elif letter == "6":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("PLAYLIST 6")
+                        MP3_Playlist()        
+               ###Volume Control ###
                 elif letter == "#":   ###'''add 3,4,5,6,7,8,9'''
                         print ("VOLUME CONTROL")
                         
