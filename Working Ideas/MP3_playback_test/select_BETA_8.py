@@ -16,9 +16,11 @@ song = 0
 
 A = (0, 0, 255) #Blue
 X = (0, 0, 0) #Black
-P = (255, 255, 0) #Yellow      
+P = (255, 255, 0) #YellowGreen      
 M = (60, 200, 130)
-End = (255, 0, 0)
+Reset = (255,165,0)
+End = (255, 0, 0) 
+Volume = (0, 255, 0) #Green
 
 ###change interface###
 music_interface = [
@@ -26,11 +28,9 @@ A, A, A, A, A, A, A, A, #ALPHA
 A, A, A, A, A, A, A, A,
 A, A, A, A, A, A, A, A,
 A, A, X, X, X, X, X, X,
+X, X, X, X, X, X, X, Reset,
+M, M, M, M, X, X, X, Volume, #MOOD AND VOLUME
 X, X, X, X, X, X, X, X,
-
-M, M, M, M, X, X, X, P, #MOOD AND VOLUME
-X, X, X, X, X, X, X, X,
-
 P, P, P, P, X, X, X, End] #PLAYLISTS
 
 sense.set_pixels(music_interface)
@@ -40,7 +40,7 @@ y = 0
 volume = 0.5
 volume_change = 0.10
 pygame.mixer.music.set_volume(volume)
-v_on = [0,255,0] ###CHANGE TO ORANGE
+v_on = [0,255,0] 
 v_off =[30,30,30]
 
 #sense.set_pixels(x, y, 255, 255, 255)
@@ -51,7 +51,7 @@ Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 
                  10: "I", 11: "J", 12: "K", 13: "L", 14: "M", 15: "N", 16: "O", 17: "P",
                  20: "Q", 21: "R", 22: "S", 23: "T", 24: "U", 25: "V", 26: "W", 27: "X",
                  30: "Y", 31:"Z", 32: "*", 33: "*", 34: "*", 35: "*", 36: "*", 37: "*",
-                 40: "*", 41:"*", 42: "*", 43: "*", 44: "*", 45: "*", 46: "*", 47: "*",       
+                 40: "*", 41:"*", 42: "*", 43: "*", 44: "*", 45: "*", 46: "*", 47: "@",       
                  50: "*", 51:"*", 52: "*", 53: "*", 54: "*", 55: "*", 56: "*", 57: "#",
                  60: "*", 61:"*", 62: "*", 63: "*", 64: "*", 65: "*", 66: "*", 67: "*", 
                  70: "1", 71:"2", 72: "3", 73: "4", 74: "*", 75: "*", 76: "*", 77: "%"}
@@ -69,7 +69,7 @@ Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 
 def MP3_Playlist():
         #play_list = True
         the_song = 0
-        ###add the play list
+        
         print ("THIS IS THE PLAYLIST FUNCTION RUNNING")
         print ("YOU SELECTED", letter)
         print letter
@@ -84,46 +84,29 @@ def MP3_Playlist():
         print ("there are", number_of_songs)
 
         print type(number_of_songs)
-        #random_song = random.randrange(0, len(songs_found))
-        #print ("RANDOM SONG", random_song)
-
-
-        
-        #songs_found = songs_found[1:] + [songs_found[0]] # move current song to the back of the list 
-        #pygame.mixer.music.load(songs_found[0])
-        #pygame.mixer.music.play()
-
-        ###PLAY ALL SONGS IN THE PLAYLIST###]
-
-        
+               
         if pygame.mixer.music.get_busy()==False:
                 while the_song < number_of_songs:
                         
                         pygame.mixer.music.load(songs_found[the_song])
-                        #Sound(songs_found[the_song])
-                        
-                        #length = pygame.Sound.get_length()
-                        #print length
+                        #
                         pygame.mixer.music.play()
                         print("Playing Song")
                         the_song = the_song + 1
                         print ("the song number is", str(the_song))
+
+                        ##add an animation  / picture ############################
+                        
                         while pygame.mixer.music.get_busy():
                                 pygame.time.Clock().tick(10)  ###waits for song
-                        
-                        
+                                
+                                
                         
                                 
         else:
                 print ("end of playlist")
                 
-       
-
-      ## ''' except:'''
-          ##  '''    print ("No MP3s")'''
-        ##        '''scroll NO MP3S'''
-    ##    '''        sense.show_message("NO MP3s", text_colour = [255, 0, 0])'''
-                
+             
         
 ###################################
 ### PLay song by Title Letter
@@ -220,12 +203,22 @@ while running:
                 elif letter == "4":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 4")
                         MP3_Playlist()
-                elif letter == "5":   ###'''add 3,4,5,6,7,8,9'''
-                        print ("PLAYLIST 5")
-                        MP3_Playlist()
-                elif letter == "6":   ###'''add 3,4,5,6,7,8,9'''
-                        print ("PLAYLIST 6")
-                        MP3_Playlist()
+                elif letter == "@":   ###'''add 3,4,5,6,7,8,9'''
+                        print ("RESET")
+                        pygame.mixer.music.stop()  
+                        sense.set_pixel(0, 0, 255, 255, 0)        
+
+
+
+                #####ADD THE FOR MOOD LISTS#########
+
+                        
+                #elif letter == "5":   ###'''add 3,4,5,6,7,8,9'''
+                     #   print ("PLAYLIST 5")
+                      #  MP3_Playlist()
+                #elif letter == "6":   ###'''add 3,4,5,6,7,8,9'''
+                       # print ("PLAYLIST 6")
+                       # MP3_Playlist()
 
                 #####################
                 ###Close Player######
@@ -322,11 +315,7 @@ while running:
         print letter
         sense.show_letter(str(letter))
 
-        #if
-            
-        
-        
-            
+                  
         if event.type == QUIT:
             running = False
             print("BYE")
