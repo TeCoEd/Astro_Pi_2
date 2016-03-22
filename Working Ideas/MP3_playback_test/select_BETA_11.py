@@ -30,7 +30,7 @@ A, A, A, A, A, A, A, A,
 A, A, X, X, X, X, X, X,
 X, X, X, X, X, X, X, Reset,
 M, M, M, M, X, X, X, Volume, #MOOD AND VOLUME
-X, X, X, X, X, X, X, M,         #Random song
+X, X, X, X, X, X, X, M, #Random song
 P, P, P, P, X, X, X, End] #PLAYLISTS
 
 sense.set_pixels(music_interface)
@@ -53,7 +53,7 @@ Lookup_Letter = {00: "A", 01: "B", 02: "C", 03: "D", 04: "E", 05: "F", 06 :"G", 
                  30: "Y", 31:"Z", 32: "*", 33: "*", 34: "*", 35: "*", 36: "*", 37: "*",
                  40: "*", 41:"*", 42: "*", 43: "*", 44: "*", 45: "*", 46: "*", 47: "@",       
                  50: "*", 51:"*", 52: "*", 53: "*", 54: "*", 55: "*", 56: "*", 57: "#",
-                 60: "*", 61:"*", 62: "*", 63: "*", 64: "*", 65: "*", 66: "*", 67: "*", 
+                 60: "*", 61:"*", 62: "*", 63: "*", 64: "*", 65: "*", 66: "*", 67: "!", 
                  70: "1", 71:"2", 72: "3", 73: "4", 74: "*", 75: "*", 76: "*", 77: "%"}
 
     
@@ -167,7 +167,7 @@ def MP3_Player():
 
 
 sense.load_image("Rasp.png")
-time.sleep(5)
+time.sleep(2)
 
 while running:
     Co_Ord = {"0, 0": "A" }
@@ -189,6 +189,10 @@ while running:
             elif event.key == K_RETURN:
                 #break
                 #print ("YOU SELECTED", letter)
+
+                #################
+                #####Play Lists##
+                #################    
                     
                 if letter == "1":   ###'''add 3,4,5,6,7,8,9'''
                         print ("PLAYLIST 1")
@@ -210,18 +214,39 @@ while running:
                         
                 elif letter == "!":   
                         print ("Random")
+                        sense.show_message("RANDOM SONG", text_colour = [155, 100, 155])
                         while True:
-                            pos = random.randrange(0, 31)
-                            brackets = ("'")
-                            print (brackets)
-                            print  type(pos)
+                                if pygame.mixer.music.get_busy() == False:
+                                        pos = random.randrange(0, 3) ###change to 31
+                                        if pos == 'None':
+                                            pass
+                                        else:
+                                            brackets = ("'")
+                                            print (brackets)
+                                            print  type(pos)
 
-                            #final = str(brackets + pos + brackets)
-                            #print final
+                                            #final = str(brackets + pos + brackets)
+                                            #print final
+                                            
+                                            letter = Lookup_Letter.get(pos)
+                                            print letter
+                                            time.sleep(1)
+                                            MP3_Player()
+
+                                ####error should cycle through####
+                                ##################################
+
+                                            
+                                else:
+                                        if event.key == K_RETURN:
+                                                #pygame.mixer.music.stop()
+                                                break
+                                        else:
+                                                pass
+
+                        ##################################
+                        #####WHAT HAPPENS WHEN NONE
                             
-                            letter = Lookup_Letter.get(pos)
-                            print letter
-                            time.sleep(1)
 
                         #####ADD THE FOR MOOD LISTS#########
 
@@ -231,8 +256,11 @@ while running:
                             
                 elif letter == "@":   ###'''add 3,4,5,6,7,8,9'''
                         print ("RESET")
+                        sense.show_message("RESET", text_colour = [255, 0, 0])
                         pygame.mixer.music.stop()
-                        sense.set_pixel(0, 0, 255, 255, 0)
+                        y = 0
+                        x = 0
+                        #sense.set_pixel(0, 0, 255, 255, 0)
                         sense.set_pixels(music_interface)
                                 
 
@@ -326,7 +354,7 @@ while running:
                 
             
                 
-        time.sleep(0.3)
+        time.sleep(0.11)
         sense.set_pixel(x, y, 255, 255, 0)
         print (x, y)
         #print (type(x))
