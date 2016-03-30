@@ -7,4 +7,4 @@ Place into your /home/pi folder
 
 Run the Astro MP3 final Python program
 
-Read the instructions and enjoy
+Read the instructions document and enjoy
