@@ -212,14 +212,16 @@ while running:
                 ##### RANDOM PLAY LIST ########
                 ###############################
                         
-                elif letter == "!":   
+                elif letter == "!":
+                        random_play = True
                         print ("Random")
                         sense.show_message("RANDOM SONG", text_colour = [155, 100, 155])
-                        while True:
+                        while random_play == True:
                                 if pygame.mixer.music.get_busy() == False:
                                         pos = random.randrange(0, 3) ###change to 31
                                         if pos == 'None':
                                             pass
+                                            print ("playing")    
                                         else:
                                             brackets = ("'")
                                             print (brackets)
@@ -231,18 +233,19 @@ while running:
                                             letter = Lookup_Letter.get(pos)
                                             print letter
                                             time.sleep(1)
-                                            MP3_Player()
-
-                                ####error should cycle through####
-                                ##################################
 
                                             
-                                else:
-                                        if event.key == K_RETURN:
-                                                #pygame.mixer.music.stop()
-                                                break
-                                        else:
-                                                pass
+                                            MP3_Player() ###import the code
+
+                                            
+                                #elif pygame.mixer.music.get_busy() == True:
+                                      #  for event in pygame.event.get():
+                                         #   if event.type == KEYDOWN:
+                                               #     if event.key == K_RETURN:
+                                                       #     pygame.mixer.music.stop()
+                                                         #   random_play == False
+                                               # else:
+                                                    #    pass
 
                         ##################################
                         #####WHAT HAPPENS WHEN NONE
@@ -264,7 +267,7 @@ while running:
                         sense.set_pixels(music_interface)
                                 
 
-
+                 ######add instructions#####               
 
                 
                         
