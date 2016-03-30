@@ -1,5 +1,7 @@
 # Astro_Pi_2
-Download the Astro MP3 Folder (ignore Working Files)
+Download the Astro MP3 Folder 
+
+(ignore Working Ideas folder)
 
 Place into your /home/pi folder
 
