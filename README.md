@@ -1,4 +1,4 @@
-# Astro_Pi_2
+# Raspberry Pi SenseHAT MP3 Player
 Download the Astro MP3 Folder 
 
 (ignore Working Ideas folder)
