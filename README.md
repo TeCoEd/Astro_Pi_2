@@ -1,5 +1,5 @@
 # Raspberry Pi SenseHAT MP3 Player
-Download the Astro MP3 Folder 
+Download the Astro MP3 Folder  to your Pi
 
 Place into your /home/pi folder
 
